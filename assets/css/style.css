@@ -38,6 +38,9 @@ body {
     font-weight: bold;
 
 }
+#Time {
+    font-size: 18px;
+}
 
 .grid #question {
     font-family: sans-serif;

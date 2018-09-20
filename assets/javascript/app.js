@@ -44,7 +44,16 @@
 // showQuestion(currentQuestion);
 var currentQuestion = 0
 
-$(document).ready(function(question) {
+var timeleft = 10;
+    var downloadTimer = setInterval(function(){
+    timeleft--;
+    document.getElementById("countdowntimer").textContent = timeleft;
+    if(timeleft <= 0)
+        clearInterval(downloadTimer);
+    },1000);
+
+    
+function showQuestion(currentQuestion) {
     
     for (var i = 0; i < myQuestions.length; i++) {
         
@@ -55,33 +64,62 @@ $(document).ready(function(question) {
         $("#choice4").text(myQuestions[currentQuestion].answers[3]);
        
         console.log(myQuestions[currentQuestion].question)
+    timeLeft = 10;
+    document.getElementById("countdowntimer").textContent = timeleft 
+    
+  
     }
     
+};
+
+$(document).ready(function() {
+showQuestion(currentQuestion);
 });
 
-var currentCorrectanswer = myQuestions[currentQuestion].correctAnswer;
-console.log(currentCorrectanswer);
+
+
 
 function myFunction() {
     $("button").click(function() {
-        var fired_button = $(this).val();
-        alert(fired_button);
+        var fired_button = $(this).val()
+        alert(fired_button)
+        var currentCorrectanswer = myQuestions[currentQuestion].value;
+        var Displayanswer = myQuestions[currentQuestion].correctAnswer;  
         
       var chosenAnswer = fired_button; 
       console.log(chosenAnswer);
-    if (chosenAnswer === currentCorrectanswer) {
-        $("#grid, .buttons, #quiz").empty();
-        $("#quiz").text("Your answer is correct! " + myQuestions[currentQuestion].correctAnswer + " is the right answer!");
-        currentQuestion++
-    }
+    if (chosenAnswer === currentCorrectanswer){
+        console.log(currentCorrectanswer)
+        var currentCorrectanswer = myQuestions[currentQuestion].value;
+        var Displayanswer = myQuestions[currentQuestion].correctAnswer; 
+        $("#question, #choice1, #choice2, #choice3, #choice4").empty();
+        $("#rightanswer").text("Your answer is correct! " + Displayanswer + " is the right answer!");
+        
+        showQuestion(currentQuestion++)
+        console.log(Displayanswer)} 
+  
+         
+     
+           
+    
     else if (chosenAnswer !== currentCorrectanswer) {
-        $("#grid, .buttons, #quiz").empty();
-        $("#quiz").text("Sorry your answer is not correct! " + " The correct answer is: " + myQuestions[currentQuestion].correctAnswer);
-        currentQuestion++
+        var currentCorrectanswer = myQuestions[currentQuestion].value;
+        var Displayanswer = myQuestions[currentQuestion].correctAnswer; 
+        $("#question, #choice1, #choice2, #choice3, #choice4").empty();
+        $("#rightanswer").text("Sorry your answer is not correct! " + " The correct answer is: " + Displayanswer);
+        showQuestion(currentQuestion++)
+        console.log(Displayanswer)
+        
     } 
     
     });
 } 
+
+function nextQuestion() {
+
+}
+
+
 
 
    

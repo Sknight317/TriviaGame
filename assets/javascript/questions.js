@@ -7,6 +7,7 @@ var myQuestions = [
         "3",
         "4"],
     correctAnswer: "4",
+    value: "4",
 },{
     question: "How many bones are in the human body?",
     answers: [
@@ -15,6 +16,7 @@ var myQuestions = [
         "127",
         "94"],
         correctAnswer: "206",
+        value: "2",
 },{
     question: "If you were to stretch out your entire digestive system, how long would it be?",
     anwers: [
@@ -23,6 +25,7 @@ var myQuestions = [
          "10 feet",
          "30 feet"],
         correctAnswer: "30 feet",
+        value: "4",
 },{
     question: "What is the most common blood type?",
     answers: [
@@ -31,6 +34,7 @@ var myQuestions = [
         "B+",
         "B-"],
         correctAnswer: "O+",
+        value: "1",
 },{
     question: "Where is the heart actually located?",
     answers: [
@@ -39,6 +43,7 @@ var myQuestions = [
         "on the right side of the chest",
         "middle of the chest, slightly to the left"],
         correctAnswer: "middle of the chest, slightly to the left",
+        value: "4",
 },{
     question: "Where are your metatarsal bones located?",
     answers: [
@@ -47,6 +52,7 @@ var myQuestions = [
         "Your skull",
         "Your hands"],
         correctAnswer: "Your feet",
+        value: "2",
 },{
     question: "What is the longest bone in the human body?",
     answers: [
@@ -55,6 +61,7 @@ var myQuestions = [
         "Humerus",
         "Fibula"],
         correctAnswer: "Femur",
+        value: "2",
 },{
     question: "What tissue is the nose primarily made of?",
     answers: [
@@ -62,5 +69,6 @@ var myQuestions = [
         "tendon",
         "glucose",
         "bone"],
-    correctAnswer: "cartilage"
+    correctAnswer: "cartilage",
+    value: "1",
 }]
