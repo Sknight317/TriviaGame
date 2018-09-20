@@ -43,24 +43,24 @@
 
 // showQuestion(currentQuestion);
 var currentQuestion = 0
-var QuestionTotal = 8
+var QuestionTotal = 1
 var questionsright = 0
 var questionswrong = 0
 var total = 8
-// var timeleft = 10;
-//     var downloadTimer = setInterval(function(){
-//     timeleft--;
-//     document.getElementById("countdowntimer").textContent = timeleft;
-//     if(timeleft <= 0)
-//         clearInterval(downloadTimer);
-//     },1000);
+
+    
 
     
 function showQuestion(currentQuestion) {
-    
-
-        
-        QuestionTotal--
+    clearInterval(downloadTimer);
+    var timeleft = 10;
+    var downloadTimer = setInterval(function(){
+        timeleft--;
+        document.getElementById("countdowntimer").textContent = timeleft;
+        if(timeleft <= 0)
+            clearInterval(downloadTimer);
+        },1000);
+        QuestionTotal++
         decreaseQues()
         $("#question").text(myQuestions[currentQuestion].question);
         $("#choice1").text(myQuestions[currentQuestion].answers[0]);
@@ -74,15 +74,16 @@ function showQuestion(currentQuestion) {
             
             
        $("#Questionnum").text("Question " + QuestionTotal + " of " + total)
-        
+      
+       loadnext()
     
 };
 
 
 function decreaseQues() {
-    if (QuestionTotal === 0) {
+    if (QuestionTotal === 8) {
         $("#question, button").hide();
-        $("#results").text("Your score is:")
+        $("#results").text("Your score is: " + questionsright + " out of " + total)
         createRefreshButton()
     }
 }
@@ -100,44 +101,64 @@ function refresh() {
     $("#results").hide();
     $(".btn_refresh").hide();
     var currentQuestion = 0
-    var QuestionTotal = 8
+    var QuestionTotal = 1
     $("#Questionnum").text("Question " + QuestionTotal + " of " + total)
     var questionsright = 0
     var questionswrong = 0
     var total = 8
     showQuestion(currentQuestion)
+    decreaseQues()
 }
 
 
-// $(document).ready(function() {
-//     $("#question").text(myQuestions[currentQuestion].question);
-//     $("#choice1").text(myQuestions[currentQuestion].answers[0]);
-//     $("#choice2").text(myQuestions[currentQuestion].answers[1]);
-//     $("#choice3").text(myQuestions[currentQuestion].answers[2]);
-//     $("#choice4").text(myQuestions[currentQuestion].answers[3]);
+$(document).ready(function() {
+    $("#question").text(myQuestions[currentQuestion].question);
+    $("#choice1").text(myQuestions[currentQuestion].answers[0]);
+    $("#choice2").text(myQuestions[currentQuestion].answers[1]);
+    $("#choice3").text(myQuestions[currentQuestion].answers[2]);
+    $("#choice4").text(myQuestions[currentQuestion].answers[3]);
    
-//     console.log(myQuestions[currentQuestion].question)
-//     console.log(myQuestions[currentQuestion].answers)
+    console.log(myQuestions[currentQuestion].question)
+    console.log(myQuestions[currentQuestion].answers)
 
-// });
+    var timeleft = 10;
+    var downloadTimer = setInterval(function(){
+    timeleft--;
+    document.getElementById("countdowntimer").textContent = timeleft;
+    if(timeleft <= 0)
+        clearInterval(downloadTimer);
+    },1000);
+    currentQuestion++
+    decreaseQues()
+    
+    var QuestionTotal = 1
+    $("#Questionnum").text("Question " + QuestionTotal + " of " + total)
+    
+    loadnext()
+});
 
 
 
 function loadnext() {
-    var chosenOption = document.querySelector('input[type = radio]:checked').value;
-    
+    $("input[type='radio']").click(function(){
+       
+    var chosenOption = $("input[name='option']:checked").val();
     console.log(chosenOption)
-    if (myQuestions[currentQuestion].correctAnswer === chosenOption) {
-        alert("correct")
-        console.log(myQuestions[currentQuestion].correctAnswer)
-        questionsright++ 
-        showNext()  
+    if (myQuestions[currentQuestion].value === chosenOption) {
+        console.log(myQuestions[currentQuestion].value)
+        questionsright++
+       $("#rightanswer").text("Your answer is correct " + myQuestions[currentQuestion].correctAnswer + " is the right answer." )
+          
     }
    
-    else if (myQuestions[currentQuestion].correctAnswer !== answer) {
-        questionswrong++  
-        showNext() 
+    else if (myQuestions[currentQuestion].value !== chosenOption) {
+        questionswrong++
+        $("#rightanswer").text("Your answer is incorrect " + myQuestions[currentQuestion].correctAnswer + " is the right answer." )
+        
+    
+         
     }
+})
 }
 
 
