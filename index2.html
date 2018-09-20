@@ -25,18 +25,19 @@
 
                 <p id="question"></p>
                 <div class="buttons">
-                    <button id="button1" onclick="myFunction()" value="1"><span id="choice1" ></span></button>
-                    <button id="button2" onclick="myFunction()" value="2"><span id="choice2"></span></button>
-                    <button id="button3" onclick="myFunction()" value="3"><span id="choice3"></span></button>
-                    <button id="button4" onclick="myFunction()" value="4"><span id="choice4"></span></button>
+                    <button id="button1"><input type="radio" name="option" value="1"><span id="choice1"></span></button>
+                    <button id="button2"><input type="radio" name="option" value="2"><span id="choice2"></span></button>
+                    <button id="button3"><input type="radio" name="option" value="3"><span id="choice3"></span></button>
+                    <button id="button4"><input type="radio" name="option" value="4"><span id="choice4"></span></button>
+                    <button id="next" onclick="showQuestion(currentQuestion++)">Next</button>
                 </div>
 
                 <div id="results"></div>
                 
 
-                <hr style="margin-top: 50px">
+                <hr style="margin-top: 30px">
                 <footer>
-                    <p id="Questionnum">Question x of y</p>
+                    <p id="Questionnum">Question 8 of 8</p>
                 </footer>
             </div>
         </div>

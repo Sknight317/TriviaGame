@@ -17,9 +17,10 @@ var myQuestions = [
         "94"],
         correctAnswer: "206",
         value: "2",
+       
 },{
     question: "If you were to stretch out your entire digestive system, how long would it be?",
-    anwers: [
+    answers: [
          "15 feet",
          "4 feet",
          "10 feet",

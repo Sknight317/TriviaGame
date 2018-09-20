@@ -43,20 +43,25 @@
 
 // showQuestion(currentQuestion);
 var currentQuestion = 0
-
-var timeleft = 10;
-    var downloadTimer = setInterval(function(){
-    timeleft--;
-    document.getElementById("countdowntimer").textContent = timeleft;
-    if(timeleft <= 0)
-        clearInterval(downloadTimer);
-    },1000);
+var QuestionTotal = 8
+var questionsright = 0
+var questionswrong = 0
+var total = 8
+// var timeleft = 10;
+//     var downloadTimer = setInterval(function(){
+//     timeleft--;
+//     document.getElementById("countdowntimer").textContent = timeleft;
+//     if(timeleft <= 0)
+//         clearInterval(downloadTimer);
+//     },1000);
 
     
 function showQuestion(currentQuestion) {
     
-    for (var i = 0; i < myQuestions.length; i++) {
+
         
+        QuestionTotal--
+        decreaseQues()
         $("#question").text(myQuestions[currentQuestion].question);
         $("#choice1").text(myQuestions[currentQuestion].answers[0]);
         $("#choice2").text(myQuestions[currentQuestion].answers[1]);
@@ -64,60 +69,127 @@ function showQuestion(currentQuestion) {
         $("#choice4").text(myQuestions[currentQuestion].answers[3]);
        
         console.log(myQuestions[currentQuestion].question)
-    timeLeft = 10;
-    document.getElementById("countdowntimer").textContent = timeleft 
-    
-  
-    }
+        console.log(myQuestions[currentQuestion].answers)
+       
+            
+            
+       $("#Questionnum").text("Question " + QuestionTotal + " of " + total)
+        
     
 };
 
-$(document).ready(function() {
-showQuestion(currentQuestion);
-});
+
+function decreaseQues() {
+    if (QuestionTotal === 0) {
+        $("#question, button").hide();
+        $("#results").text("Your score is:")
+        createRefreshButton()
+    }
+}
+
+function createRefreshButton() {
+    var $button = $('<button class="btn_refresh">Refresh</button>');
+    $("#quiz").append($button);
+    $button.on('click',function(){
+        refresh();
+    });
+  }
+
+function refresh() {
+    $("#question, button").show();
+    $("#results").hide();
+    $(".btn_refresh").hide();
+    var currentQuestion = 0
+    var QuestionTotal = 8
+    $("#Questionnum").text("Question " + QuestionTotal + " of " + total)
+    var questionsright = 0
+    var questionswrong = 0
+    var total = 8
+    showQuestion(currentQuestion)
+}
+
+
+// $(document).ready(function() {
+//     $("#question").text(myQuestions[currentQuestion].question);
+//     $("#choice1").text(myQuestions[currentQuestion].answers[0]);
+//     $("#choice2").text(myQuestions[currentQuestion].answers[1]);
+//     $("#choice3").text(myQuestions[currentQuestion].answers[2]);
+//     $("#choice4").text(myQuestions[currentQuestion].answers[3]);
+   
+//     console.log(myQuestions[currentQuestion].question)
+//     console.log(myQuestions[currentQuestion].answers)
+
+// });
 
 
 
+function loadnext() {
+    var chosenOption = document.querySelector('input[type = radio]:checked').value;
+    
+    console.log(chosenOption)
+    if (myQuestions[currentQuestion].correctAnswer === chosenOption) {
+        alert("correct")
+        console.log(myQuestions[currentQuestion].correctAnswer)
+        questionsright++ 
+        showNext()  
+    }
+   
+    else if (myQuestions[currentQuestion].correctAnswer !== answer) {
+        questionswrong++  
+        showNext() 
+    }
+}
 
-function myFunction() {
-    $("button").click(function() {
-        var fired_button = $(this).val()
-        alert(fired_button)
-        var currentCorrectanswer = myQuestions[currentQuestion].value;
-        var Displayanswer = myQuestions[currentQuestion].correctAnswer;  
+
+// function myFunction() {
+//     $("#button1, #button2, #button3, #button4").click(function() {
+//         var fired_button = $(this).val()
         
-      var chosenAnswer = fired_button; 
-      console.log(chosenAnswer);
-    if (chosenAnswer === currentCorrectanswer){
-        console.log(currentCorrectanswer)
-        var currentCorrectanswer = myQuestions[currentQuestion].value;
-        var Displayanswer = myQuestions[currentQuestion].correctAnswer; 
-        $("#question, #choice1, #choice2, #choice3, #choice4").empty();
-        $("#rightanswer").text("Your answer is correct! " + Displayanswer + " is the right answer!");
+//         var currentCorrectanswer = myQuestions[currentQuestion].value;
+//         var Displayanswer = myQuestions[currentQuestion].correctAnswer;  
         
-        showQuestion(currentQuestion++)
-        console.log(Displayanswer)} 
+//       var chosenAnswer = fired_button; 
+//       console.log(chosenAnswer);
+//     if (chosenAnswer === Displayanswer){
+//         console.log(currentCorrectanswer)
+        
+//         // var x = $("#quiz, #grid").detach();
+       
+//         // $("#quiz").text("Your answer is correct! " + Displayanswer + " is the right answer!");
+//         // $("#quiz, #grid").prepend(x);
+        
+        
+//         questionsright++
+       
+//         $("#Questionnum").text("Question " + QuestionTotal + " of " + total)
+//        } 
   
          
      
            
     
-    else if (chosenAnswer !== currentCorrectanswer) {
-        var currentCorrectanswer = myQuestions[currentQuestion].value;
-        var Displayanswer = myQuestions[currentQuestion].correctAnswer; 
-        $("#question, #choice1, #choice2, #choice3, #choice4").empty();
-        $("#rightanswer").text("Sorry your answer is not correct! " + " The correct answer is: " + Displayanswer);
-        showQuestion(currentQuestion++)
-        console.log(Displayanswer)
+//     else if (chosenAnswer !== Displayanswer) {
         
-    } 
+        
+//         // var currentCorrectanswer = myQuestions[currentQuestion].value;
+//         // var Displayanswer = myQuestions[currentQuestion].correctAnswer; 
+//         // $("#question, #choice1, #choice2, #choice3, #choice4").empty();
+//         // $("#rightanswer").text("Sorry your answer is not correct! " + " The correct answer is: " + Displayanswer);
+        
+        
+//         questionswrong++
+        
+//          $("#Questionnum").text("Question " + QuestionTotal + " of " + total)
+//     } 
     
-    });
-} 
+    
+//     });
+// } 
 
-function nextQuestion() {
 
-}
+
+
+
 
 
 
